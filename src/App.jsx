@@ -85,13 +85,16 @@ export default function App() {
     showToast("Starting manual ping...", "success");
     try {
       const response = await fetch('/.netlify/functions/ping-manual', { method: 'POST' });
-      if (!response.ok) throw new Error("Function request failed");
+      if (!response.ok) {
+        throw new Error(`Ping Failed (${response.status})`);
+      }
       const result = await response.json();
       showToast(`Ping complete! Updated ${result.updated} servers.`, "success");
       fetchServers();
     } catch (err) {
-      console.warn(err);
-      showToast("Ping requires Netlify deployment to run natively.", "error");
+      console.warn("Ping Error:", err);
+      // Show actual error message rather than hardcoded string
+      showToast(err.message === "Failed to fetch" ? "Network error connecting to Ping function." : err.message, "error");
     } finally {
       setIsPinging(false);
     }

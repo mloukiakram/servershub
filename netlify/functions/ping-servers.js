@@ -1,7 +1,7 @@
-const { schedule } = require("@netlify/functions");
-const { createClient } = require("@supabase/supabase-js");
-const net = require("net");
-const pLimit = require("p-limit");
+import { schedule } from "@netlify/functions";
+import { createClient } from "@supabase/supabase-js";
+import net from "net";
+import pLimit from "p-limit";
 
 // Requires SUPABASE_SERVICE_ROLE_KEY environment variable in Netlify
 // to bypass RLS and authenticate securely from the backend worker.
@@ -84,4 +84,4 @@ const handler = async function (event, context) {
 };
 
 // Netlify Cron Schedule: 9am and 9pm (UTC)
-exports.handler = schedule("0 9,21 * * *", handler);
+export const handler = schedule("0 9,21 * * *", handler);

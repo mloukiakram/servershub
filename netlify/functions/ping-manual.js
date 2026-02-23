@@ -1,6 +1,6 @@
-const { createClient } = require("@supabase/supabase-js");
-const net = require("net");
-const pLimit = require("p-limit");
+import { createClient } from "@supabase/supabase-js";
+import net from "net";
+import pLimit from "p-limit";
 
 // Requires SUPABASE_SERVICE_ROLE_KEY environment variable in Netlify
 const SUPABASE_URL = process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL;
@@ -26,7 +26,7 @@ async function pingIP(ip) {
     return isUp;
 }
 
-exports.handler = async function (event, context) {
+export const handler = async function (event, context) {
     // Only accept POST requests
     if (event.httpMethod !== "POST") {
         return { statusCode: 405, body: "Method Not Allowed" };
