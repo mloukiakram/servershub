@@ -11,7 +11,7 @@ export default function AddServerModal({ isOpen, onClose, editingId, newServerFo
                 <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-violet-500/50 to-transparent"></div>
                 <div className="px-6 py-5 border-b border-slate-100 dark:border-slate-800 flex justify-between items-center bg-slate-50/50 dark:bg-slate-900/50">
                     <h3 className="font-bold text-lg text-slate-800 dark:text-slate-100">{editingId ? 'Edit Server Metadata' : 'Add New Server'}</h3>
-                    <button onClick={onClose} className="p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"><X size={20} /></button>
+                    <button onClick={onClose} className="p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors" aria-label="Close add server modal"><X size={20} /></button>
                 </div>
                 <form onSubmit={onSubmit} className="p-6 space-y-6">
                     <div className="space-y-2">

@@ -425,12 +425,12 @@ export default function App() {
             </div>
 
             <div className="flex items-center gap-1 bg-white dark:bg-slate-900 p-1 rounded-lg border border-slate-200 dark:border-slate-800">
-              <button onClick={() => setIsDark(!isDark)} className="p-2 rounded-md transition-all text-slate-500 dark:text-slate-400 hover:text-amber-500 dark:hover:text-amber-300" title="Toggle Theme">
+              <button onClick={() => setIsDark(!isDark)} className="p-2 rounded-md transition-all text-slate-600 dark:text-slate-400 hover:text-amber-600 dark:hover:text-amber-400 focus:outline-none focus:ring-2 focus:ring-violet-500" aria-label={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}>
                 {isDark ? <Sun size={20} /> : <Moon size={20} />}
               </button>
               <div className="w-px h-6 bg-slate-200 dark:bg-slate-800 mx-1"></div>
-              <button onClick={() => { setViewMode('list'); setShowDashboard(false); }} className={`p-2 rounded-md transition-all ${viewMode === 'list' && !showDashboard ? 'bg-slate-200 dark:bg-slate-800 shadow-sm text-slate-900 dark:text-white' : 'text-slate-500 hover:text-slate-900 dark:hover:text-slate-300'}`}><List size={20} /></button>
-              <button onClick={() => { setViewMode('grid'); setShowDashboard(false); }} className={`p-2 rounded-md transition-all ${viewMode === 'grid' && !showDashboard ? 'bg-slate-200 dark:bg-slate-800 shadow-sm text-slate-900 dark:text-white' : 'text-slate-500 hover:text-slate-900 dark:hover:text-slate-300'}`}><LayoutGrid size={20} /></button>
+              <button onClick={() => { setViewMode('list'); setShowDashboard(false); }} className={`p-2 rounded-md transition-all focus:outline-none focus:ring-2 focus:ring-violet-500 ${viewMode === 'list' && !showDashboard ? 'bg-slate-200 dark:bg-slate-800 shadow-sm text-slate-900 dark:text-white' : 'text-slate-500 hover:text-slate-900 dark:hover:text-slate-300'}`} aria-label="List View"><List size={20} /></button>
+              <button onClick={() => { setViewMode('grid'); setShowDashboard(false); }} className={`p-2 rounded-md transition-all focus:outline-none focus:ring-2 focus:ring-violet-500 ${viewMode === 'grid' && !showDashboard ? 'bg-slate-200 dark:bg-slate-800 shadow-sm text-slate-900 dark:text-white' : 'text-slate-500 hover:text-slate-900 dark:hover:text-slate-300'}`} aria-label="Grid View"><LayoutGrid size={20} /></button>
             </div>
 
             <button onClick={() => { setEditingId(null); setNewServerForm({ id: '', provider: '', category: 'Production', status: 'Active' }); setIsAddServerModalOpen(true); }} className="h-11 px-5 flex items-center gap-2 bg-violet-600 hover:bg-violet-500 text-white font-bold text-sm rounded-lg transition-all shadow-[0_4px_10px_rgba(124,58,237,0.3)] dark:shadow-[0_0_15px_rgba(124,58,237,0.3)] hover:scale-[1.02] active:scale-95"><Plus size={18} /> <span className="hidden sm:inline">Add</span></button>
@@ -456,8 +456,8 @@ export default function App() {
                 {filteredServers.length > 0 && filteredServers.every(s => selectedIds.has(s.id)) ? <CheckSquare size={18} className="text-violet-600 dark:text-violet-500" /> : <Square size={18} />} Select All <span className="text-slate-400 dark:text-slate-500">({filteredServers.length})</span>
               </button>
               <div className="flex items-center gap-3">
-                <button onClick={handleManualPing} disabled={isPinging} className="flex items-center gap-2 text-sm font-bold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors bg-white dark:bg-slate-900 px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 w-max shadow-sm disabled:opacity-50">
-                  <RefreshCw size={16} className={isPinging ? "animate-spin text-violet-600 dark:text-violet-400" : ""} /> {isPinging ? 'Pinging...' : 'Ping Servers'}
+                <button onClick={handleManualPing} disabled={isPinging} className="flex items-center gap-2 text-sm font-bold text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors bg-white dark:bg-slate-900 px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 hover:border-slate-400 dark:hover:border-slate-600 w-max shadow-sm disabled:opacity-50">
+                  <RefreshCw size={16} className={isPinging ? "animate-spin text-violet-600 dark:text-violet-400" : ""} /> {isPinging ? 'Checking...' : 'Check Down Servers'}
                 </button>
                 <button onClick={exportCSV} className="flex items-center gap-2 text-sm font-bold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors bg-white dark:bg-slate-900 px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 w-max shadow-sm"><Download size={16} /> Export CSV {selectedIds.size > 0 ? `(${selectedIds.size})` : ''}</button>
               </div>
@@ -488,8 +488,8 @@ export default function App() {
                           <td className="px-6 py-4"><button className={`transition-colors flex ${isSelected ? 'text-violet-600 dark:text-violet-500' : 'text-slate-400 dark:text-slate-600 group-hover:text-slate-600 dark:group-hover:text-slate-400'}`}>{isSelected ? <CheckSquare size={20} /> : <Square size={20} />}</button></td>
                           <td className="px-6 py-4"><span onClick={(e) => { e.stopPropagation(); copyToClipboard(server.id, 'ID'); }} className="font-mono font-bold text-slate-900 dark:text-slate-200 hover:text-violet-600 dark:hover:text-violet-400 border-b border-dashed border-slate-300 dark:border-slate-700 hover:border-violet-500/50 transition-colors pb-0.5">{server.id}</span></td>
                           <td className="px-6 py-4">
-                            <button onClick={(e) => { e.stopPropagation(); openIPsModal(server.id); }} className="flex items-center gap-2 group/btn hover:bg-slate-100 dark:hover:bg-slate-800 px-3 py-1.5 -ml-3 rounded-lg transition-colors text-left border border-transparent hover:border-slate-200 dark:hover:border-slate-700">
-                              <Network size={14} className="text-slate-400 dark:text-slate-500 group-hover/btn:text-violet-600 dark:group-hover/btn:text-violet-400 transition-colors" />
+                            <button onClick={(e) => { e.stopPropagation(); openIPsModal(server.id); }} className="flex items-center gap-2 group/btn hover:bg-slate-100 dark:hover:bg-slate-800 px-3 py-1.5 -ml-3 rounded-lg transition-colors text-left border border-transparent hover:border-slate-300 dark:hover:border-slate-700" aria-label={`Manage IPs for ${server.id}`}>
+                              <Network size={14} className="text-slate-500 dark:text-slate-400 group-hover/btn:text-violet-700 dark:group-hover/btn:text-violet-400 transition-colors" />
                               <span className={`${server.ip_data?.length ? 'font-mono text-slate-700 dark:text-slate-300 group-hover/btn:text-slate-900 dark:group-hover/btn:text-white' : 'text-slate-400 dark:text-slate-500 italic text-sm'}`}>{mainIp}</span>
                               {extraIps > 0 && (
                                 <div className="relative inline-block group/ipbadge">
@@ -505,7 +505,7 @@ export default function App() {
                           <td className="px-6 py-4"><StatusBadge status={server.status} /></td>
                           <td className="px-6 py-4 text-right">
                             <div className="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                              <button onClick={(e) => { e.stopPropagation(); openEditModal(server); }} className="p-2 text-slate-500 hover:text-violet-600 dark:hover:text-violet-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"><Edit2 size={16} /></button>
+                              <button onClick={(e) => { e.stopPropagation(); openEditModal(server); }} className="p-2 text-slate-500 hover:text-violet-700 dark:hover:text-violet-400 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-violet-500" aria-label={`Edit Server ${server.id}`}><Edit2 size={16} /></button>
 
                               <div className="relative">
                                 <button onClick={(e) => handleMenuToggle(e, server.id)} className={`p-2 rounded-lg transition-colors ${openMenuId === server.id ? 'bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white' : 'text-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800'}`}><ArrowRight size={16} /></button>

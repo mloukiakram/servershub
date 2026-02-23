@@ -71,7 +71,7 @@ export default function IPsModal({ server, onClose, onAutoSave, copyToClipboard,
                         {syncState === 'saved' && <span className="flex items-center gap-2 text-xs text-emerald-600 dark:text-emerald-400 font-bold bg-emerald-50 dark:bg-emerald-500/10 px-3 py-1.5 rounded-full ring-1 ring-emerald-200 dark:ring-emerald-500/20 animate-enter"><CheckCircle2 size={14} /> Saved</span>}
                         {syncState === 'error' && <span className="flex items-center gap-2 text-xs text-rose-600 dark:text-rose-400 font-bold bg-rose-50 dark:bg-rose-500/10 px-3 py-1.5 rounded-full ring-1 ring-rose-200 dark:ring-rose-500/20 animate-enter"><AlertOctagon size={14} /> Failed Sync</span>}
                     </div>
-                    <button onClick={onClose} className="p-2 bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors relative z-10"><X size={20} /></button>
+                    <button onClick={onClose} className="p-2 bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors relative z-10" aria-label="Close modal"><X size={20} /></button>
                 </div>
 
                 {/* Content Grid */}
@@ -140,7 +140,7 @@ export default function IPsModal({ server, onClose, onAutoSave, copyToClipboard,
                                                 placeholder="e.g. 192.168.1.1"
                                             />
                                         </div>
-                                        <button onClick={() => handleRemoveIp(ipObj.id)} className="p-1.5 text-slate-400 dark:text-slate-500 hover:bg-rose-50 dark:hover:bg-rose-500/10 hover:text-rose-500 dark:hover:text-rose-400 rounded-md transition-colors"><Trash2 size={16} /></button>
+                                        <button onClick={() => handleRemoveIp(ipObj.id)} className="p-1.5 text-slate-400 dark:text-slate-500 hover:bg-rose-50 dark:hover:bg-rose-500/10 hover:text-rose-500 dark:hover:text-rose-400 rounded-md transition-colors" aria-label={`Remove IP ${ipObj.address || 'Empty'}`}><Trash2 size={16} /></button>
                                     </div>
 
                                     <div className="p-4 bg-white dark:bg-slate-900/40 relative">

@@ -12,9 +12,9 @@ export default {
         mono: ['JetBrains Mono', 'monospace'],
       },
       animation: {
-        'enter': 'enter 0.3s ease-out',
-        'slide-up': 'slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-        'spring-up': 'springUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
+        'enter': 'enter 0.15s ease-out',
+        'slide-up': 'slideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+        'spring-up': 'springUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
       },
       keyframes: {
         enter: {
