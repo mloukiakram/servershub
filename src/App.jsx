@@ -419,18 +419,26 @@ export default function App() {
           </div>
           <div className="flex items-center gap-3 w-full md:w-auto">
             <div className="relative flex-1 md:w-80 group">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500 group-focus-within:text-violet-600 dark:group-focus-within:text-violet-400 transition-colors" size={18} />
-              <input type="text" placeholder="Search IDs, IPs..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} className="pl-10 pr-8 h-11 w-full bg-slate-100 dark:bg-slate-950/50 border border-slate-200 dark:border-slate-800 rounded-lg text-sm text-slate-900 dark:text-slate-200 focus:outline-none focus:ring-1 focus:ring-violet-500/50 focus:border-violet-500/50 transition-all placeholder:text-slate-400 dark:placeholder:text-slate-600 shadow-inner dark:shadow-[none]" />
-              {searchQuery && <button onClick={() => setSearchQuery('')} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-white"><X size={16} /></button>}
+              <label htmlFor="search-input" className="sr-only">Search Servers</label>
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 dark:text-slate-400 group-focus-within:text-violet-600 dark:group-focus-within:text-violet-400 transition-colors" size={18} />
+              <input id="search-input" type="text" placeholder="Search IDs, IPs..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} className="pl-10 pr-8 h-11 w-full bg-slate-100 dark:bg-slate-950/50 border border-slate-300 dark:border-slate-700 rounded-lg text-sm text-slate-900 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-violet-500/50 transition-all placeholder:text-slate-500 dark:placeholder:text-slate-500 shadow-inner dark:shadow-[none]" />
+              {searchQuery && <button onClick={() => setSearchQuery('')} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"><span className="sr-only">Clear Search</span><X size={16} /></button>}
             </div>
 
             <div className="flex items-center gap-1 bg-white dark:bg-slate-900 p-1 rounded-lg border border-slate-200 dark:border-slate-800">
-              <button onClick={() => setIsDark(!isDark)} className="p-2 rounded-md transition-all text-slate-600 dark:text-slate-400 hover:text-amber-600 dark:hover:text-amber-400 focus:outline-none focus:ring-2 focus:ring-violet-500" aria-label={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}>
+              <button onClick={() => setIsDark(!isDark)} className="p-2 rounded-md transition-all text-slate-600 dark:text-slate-400 hover:text-amber-600 dark:hover:text-amber-400 focus:outline-none focus:ring-2 focus:ring-violet-500">
+                <span className="sr-only">Toggle Theme</span>
                 {isDark ? <Sun size={20} /> : <Moon size={20} />}
               </button>
               <div className="w-px h-6 bg-slate-200 dark:bg-slate-800 mx-1"></div>
-              <button onClick={() => { setViewMode('list'); setShowDashboard(false); }} className={`p-2 rounded-md transition-all focus:outline-none focus:ring-2 focus:ring-violet-500 ${viewMode === 'list' && !showDashboard ? 'bg-slate-200 dark:bg-slate-800 shadow-sm text-slate-900 dark:text-white' : 'text-slate-500 hover:text-slate-900 dark:hover:text-slate-300'}`} aria-label="List View"><List size={20} /></button>
-              <button onClick={() => { setViewMode('grid'); setShowDashboard(false); }} className={`p-2 rounded-md transition-all focus:outline-none focus:ring-2 focus:ring-violet-500 ${viewMode === 'grid' && !showDashboard ? 'bg-slate-200 dark:bg-slate-800 shadow-sm text-slate-900 dark:text-white' : 'text-slate-500 hover:text-slate-900 dark:hover:text-slate-300'}`} aria-label="Grid View"><LayoutGrid size={20} /></button>
+              <button onClick={() => { setViewMode('list'); setShowDashboard(false); }} className={`p-2 rounded-md transition-all focus:outline-none focus:ring-2 focus:ring-violet-500 ${viewMode === 'list' && !showDashboard ? 'bg-slate-200 dark:bg-slate-800 shadow-sm text-slate-900 dark:text-white' : 'text-slate-500 hover:text-slate-900 dark:hover:text-slate-300'}`}>
+                <span className="sr-only">List View</span>
+                <List size={20} />
+              </button>
+              <button onClick={() => { setViewMode('grid'); setShowDashboard(false); }} className={`p-2 rounded-md transition-all focus:outline-none focus:ring-2 focus:ring-violet-500 ${viewMode === 'grid' && !showDashboard ? 'bg-slate-200 dark:bg-slate-800 shadow-sm text-slate-900 dark:text-white' : 'text-slate-500 hover:text-slate-900 dark:hover:text-slate-300'}`}>
+                <span className="sr-only">Grid View</span>
+                <LayoutGrid size={20} />
+              </button>
             </div>
 
             <button onClick={() => { setEditingId(null); setNewServerForm({ id: '', provider: '', category: 'Production', status: 'Active' }); setIsAddServerModalOpen(true); }} className="h-11 px-5 flex items-center gap-2 bg-violet-600 hover:bg-violet-500 text-white font-bold text-sm rounded-lg transition-all shadow-[0_4px_10px_rgba(124,58,237,0.3)] dark:shadow-[0_0_15px_rgba(124,58,237,0.3)] hover:scale-[1.02] active:scale-95"><Plus size={18} /> <span className="hidden sm:inline">Add</span></button>

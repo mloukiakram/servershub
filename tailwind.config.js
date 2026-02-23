@@ -12,21 +12,21 @@ export default {
         mono: ['JetBrains Mono', 'monospace'],
       },
       animation: {
-        'enter': 'enter 0.15s ease-out',
-        'slide-up': 'slideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-        'spring-up': 'springUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
+        'enter': 'enter 0.1s ease-out',
+        'slide-up': 'slideUp 0.15s ease-out forwards',
+        'spring-up': 'springUp 0.15s ease-out forwards',
       },
       keyframes: {
         enter: {
-          'from': { opacity: '0', transform: 'scale(0.98)' },
+          'from': { opacity: '0', transform: 'scale(0.99)' },
           'to': { opacity: '1', transform: 'scale(1)' },
         },
         slideUp: {
-          'from': { opacity: '0', transform: 'translate(-50%, 40px)' },
+          'from': { opacity: '0', transform: 'translate(-50%, 10px)' },
           'to': { opacity: '1', transform: 'translate(-50%, 0)' },
         },
         springUp: {
-          '0%': { opacity: '0', transform: 'translate(-50%, 40px) scale(0.9)' },
+          '0%': { opacity: '0', transform: 'translate(-50%, 10px) scale(0.98)' },
           '100%': { opacity: '1', transform: 'translate(-50%, 0) scale(1)' },
         }
       }
